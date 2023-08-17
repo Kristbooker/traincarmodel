@@ -2,7 +2,7 @@ import base64
 import pickle
 import cv2
 import numpy
-import requests  # Correct import for making HTTP requests
+import requests  
 import os
 
 def img2vec(img):
