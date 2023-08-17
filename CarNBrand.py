@@ -15,10 +15,10 @@ def img2vec(img):
     # or
     url = "http://localhost:8080/api/genhog"
 
-    params = {"img_data": img_data_string}
     
-    response = requests.get(url, params=params)
-    # return response.content
+    
+    response = requests.get(url, json={"img_data":img_data_string})
+    
     if response.status_code == 200:
         try:
             return response.json()
@@ -28,8 +28,8 @@ def img2vec(img):
         print("API Request Error. Status Code:", response.status_code)
         return None
 
-data_path="Cars Dataset/test"
-
+data_path="Cars Dataset/train"
+# data_path="Cars Dataset/test"
 X=[]
 Y=[]
 
@@ -58,8 +58,8 @@ for i in range(len(X)):
         print("Error processing image:", e)
 
 write_path_train="hogvectors_train.pkl"
-write_path_test="hogvectors_test.pkl"
+# write_path_test="hogvectors_test.pkl"
 
 pickle.dump(HOGVectors, open(write_path_train,"wb"))
-pickle.dump(HOGVectors, open(write_path_test,"wb"))
+# pickle.dump(HOGVectors, open(write_path_test,"wb"))
 print("done")
